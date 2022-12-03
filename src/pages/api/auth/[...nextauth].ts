@@ -4,15 +4,8 @@ import DiscordProvider from "next-auth/providers/discord";
 import { env } from "../../../env/server.mjs";
 
 export const authOptions: NextAuthOptions = {
-  // Include user.id on session
-  callbacks: {
-    session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
-      }
-      return session;
-    },
-  },
+  // can't add id to the session because we don't have it without an adapter...
+
   // Configure one or more authentication providers
   providers: [
     DiscordProvider({
